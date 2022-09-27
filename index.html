@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,8 +8,9 @@
     <title>Document</title>
     <link rel="stylesheet" href="https://unpkg.com/papercss@1.8.3/dist/paper.css">
 </head>
+
 <body style="text-align: center;">
-    
+
     <h1>Guía 1</h1>
 
     <div id="ejercicios">
@@ -21,22 +23,32 @@
     <br>
     <button type="submit" id="botonResolver">Resolver</button>
 
-   
-    <div>
-        <table>
-            <tr class="row flex-middle">
-                <td class="col"><textarea aria-label="textoPseint" name="textoPseint" id="textoPseint" cols="50" rows="20" placeholder="Pega tu código aquí"></textarea></td>
-                <td class="col"><textarea aria-label="codigoJavascript" name="codigoJavascript" id="codigoJavascript" cols="50" rows="20" ></textarea></td>
-                <td class="col"><textarea aria-label="terminal" name="terminal" id="terminal" cols="50" rows="20" ></textarea></td>
+    <br><br>
+
+    <table>
+        <thead>
+            <tr>
+                <th>PseInt</th>
+                <th>JavaScript</th>
             </tr>
-        </table>
-    </div>
-    
+        </thead>
+        <tbody>
+            <tr >
+                <td><textarea aria-label="textoPseint" name="textoPseint" id="textoPseint" style="width: 100%;" rows="20"
+                        placeholder="Pega tu código aquí"></textarea></td>
+                <td><textarea aria-label="codigoJavascript" name="codigoJavascript" id="codigoJavascript" style="width: 100%;"
+                        rows="20"></textarea></td>
+            </tr>
+        </tbody>
+    </table>
 
 
-    <script id="ejercicio"></script>
+
+
+    <script type="text/javascript" id="ejercicio"></script>
 
     <script src="scripts.js"></script>
     <script src="translate.js"></script>
 </body>
+
 </html>

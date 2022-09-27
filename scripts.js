@@ -11,24 +11,22 @@ var botonEjercicio3 = document.getElementById('ejercicio3');
 
 
 //FUNCIONES
-function llenar() {
-    inicio();
-    contenedor.innerHTML = `function resolver(){
-        ${codigoJavascript.value}
-    }`;
-    
-    resolver();
+function inicio() {
+  vaciar();
+  traducir();
+  scriptToHtml();
+  resolver();
+  contenedor.innerHTML = "";
 }
 
 function activarConsigna(opcion) {
     consigna.textContent = ejercicios[opcion].consigna;
 }
 
-function inicio(){
-      
+function traducir(){
+
     var string = textoPseint.value;
-    codigoJavascript.value = "";
-  
+ 
     var codigo = string.split("\n");
 
     for (let i = 0; i < codigo.length; i++) {
@@ -42,8 +40,21 @@ function inicio(){
         }else{
             codigoJavascript.value += `${codigo[i]}\n`;
         }
-        
     }
+}
+
+function scriptToHtml(){
+    //Acá se pasa el código Js a un Script en el html
+    contenedor.innerHTML = `function resolver(){
+    ${codigoJavascript.value}
+    };`; 
+}
+
+function vaciar(){
+    
+    contenedor.innerHTML = "";
+    codigoJavascript.value = "";
+    console.clear();
 
 }
 
@@ -51,8 +62,7 @@ function inicio(){
 
 
 //LISTENERS
-boton.addEventListener('click', ()=>{llenar()})
-//boton.addEventListener('click', ()=>{inicio()})
+boton.addEventListener('click', ()=>{inicio()})
 botonEjercicio1.addEventListener('click', ()=>{activarConsigna(1)});
 botonEjercicio2.addEventListener('click', ()=>{activarConsigna(2)});
 botonEjercicio3.addEventListener('click', ()=>{activarConsigna(3)});
@@ -68,7 +78,6 @@ perimetro = 2 * PI *radio`},
 3:{'consigna':`A partir de una conocida cantidad de metros que el usuario ingresa a través del teclado se debe obtener su equivalente en centímetros, en milímetros y en pulgadas. 
 Ayuda: 1 pulgada equivale a 2.54 centímetros.`}
 }
-
 
 
 
