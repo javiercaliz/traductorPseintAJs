@@ -1,4 +1,3 @@
-
 function traducirVariables(origen) {
   let final = "";
   let intermedio = [];
@@ -30,14 +29,13 @@ function traducirVariables(origen) {
   return final;
 }
 
-
- function traducirEscribir(origen) {
+function traducirEscribir(origen) {
   let final;
   let intermedio;
 
-  intermedio = origen.slice(9)
+  intermedio = origen.slice(9);
 
-  final = intermedio
+  final = intermedio;
 
   return `console.log(${final});`;
 }
