@@ -44,3 +44,18 @@ function traducirLeer(origen) {
 
   return `${final} = prompt()`;
 }
+
+function traducirSubcadena(origen) {
+  let string;
+  let array;
+  let start;
+  let end;
+
+  array = origen.slice(10,-1).split(',')
+
+  string = array[0];
+  start = array[1];
+  end = array[2];
+
+  return `${string}.slice(${start}, ${end})`
+}

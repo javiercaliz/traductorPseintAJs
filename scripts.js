@@ -13,7 +13,8 @@ var botonEjercicio3 = document.getElementById('ejercicio3');
 function inicio() {
   vaciarConsola();
   vaciarCodigoJavascript();
-  traducir();
+  traduccionCompleja();
+  traduccionSimple();
   scriptToHtml();
   resolver();
   vaciarScript();
@@ -24,15 +25,18 @@ function activarConsigna(opcion) {
     consigna.textContent = ejercicios[opcion].consigna;
 }
 
-function traducir(){
+function traduccionCompleja(){
 
-    var string = textoPseint.value;
+    let string = textoPseint.value; 
  
-    var codigo = string.split("\n");
+    let codigo = string.split("\n");
 
     for (let i = 0; i < codigo.length; i++) {
         let sentencia = codigo[i]
         
+        if (/Algoritmo/g.test(sentencia)) {
+            continue;
+        }else
         if (/Definir/gi.test(sentencia)) {
             codigoJavascript.value += `${traducirVariables(codigo[i])}\n`;
         }else 
@@ -45,6 +49,34 @@ function traducir(){
             codigoJavascript.value += `${codigo[i]}\n`;
         }
     }
+}
+
+function traduccionSimple(){
+    let string = codigoJavascript.value
+    let codigo = string.split("\n");
+    for (let i = 0; i < codigo.length; i++) {
+      
+        if (/PI/gi.test(codigo[i])) {
+        codigo[i] = `${codigo[i].replace('PI' || 'pi', 'Math.PI')}`};
+        if (/Euler/gi.test(codigo[i])) {
+        codigo[i] = `${codigo[i].replace('Euler' || 'euler' || 'EULER', 'Math.E')}`};
+        if (/Verdadero/gi.test(codigo[i])) {
+        codigo[i] = `${codigo[i].replace('Verdadero' || 'verdadero' || 'VERDADERO', 'true')}`};
+        if (/Falso/gi.test(codigo[i])) {
+        codigo[i] = `${codigo[i].replace('Falso' || 'falso' || 'FALSO', 'false')}`};
+        if (/Y/gi.test(codigo[i])) {
+        codigo[i] = `${codigo[i].replace(' Y ' || ' y ', ' && ')}`};
+        if (/O/gi.test(codigo[i])) {
+        codigo[i] = `${codigo[i].replace(' O ' || ' o ', ' || ')}`};
+        if (/NO/gi.test(codigo[i])) {
+        codigo[i] = `${codigo[i].replace(' No ' || ' no ' || ' NO ', ' !')}`};
+     
+       
+   
+
+    }
+
+    codigoJavascript.value = codigo.join('\n')
 }
 
 
