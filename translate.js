@@ -31,11 +31,16 @@ function traducirVariables(origen) {
 
 function traducirEscribir(origen) {
   let final;
-  let intermedio;
 
-  intermedio = origen.slice(9);
-
-  final = intermedio;
+  final = origen.slice(9);
 
   return `console.log(${final});`;
+}
+
+function traducirLeer(origen) {
+  let final;
+
+  final = origen.slice(5);
+
+  return `${final} = prompt()`;
 }

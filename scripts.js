@@ -4,7 +4,6 @@ var boton = document.getElementById('botonResolver');
 var textoPseint = document.getElementById('textoPseint');
 var codigoJavascript = document.getElementById('codigoJavascript');
 var consigna = document.getElementById('consigna');
-var contenedor = document.getElementById('ejercicio');
 var botonEjercicio1 = document.getElementById('ejercicio1');
 var botonEjercicio2 = document.getElementById('ejercicio2');
 var botonEjercicio3 = document.getElementById('ejercicio3');
@@ -12,11 +11,13 @@ var botonEjercicio3 = document.getElementById('ejercicio3');
 
 //FUNCIONES
 function inicio() {
-  vaciar();
+  vaciarConsola();
+  vaciarCodigoJavascript();
   traducir();
   scriptToHtml();
   resolver();
-  contenedor.innerHTML = "";
+  vaciarScript();
+    
 }
 
 function activarConsigna(opcion) {
@@ -37,25 +38,36 @@ function traducir(){
         }else 
         if (/Escribir/gi.test(sentencia)) {
             codigoJavascript.value += `${traducirEscribir(codigo[i])}\n`;
+        }else
+        if(/Leer/gi.test(sentencia)){
+            codigoJavascript.value += `${traducirLeer(codigo[i])}\n`;
         }else{
             codigoJavascript.value += `${codigo[i]}\n`;
         }
     }
 }
 
+
 function scriptToHtml(){
-    //Acá se pasa el código Js a un Script en el html
-    contenedor.innerHTML = `function resolver(){
-    ${codigoJavascript.value}
-    };`; 
+    let script = document.createElement('script');
+    script.setAttribute('id', 'traduccion')
+    script.innerHTML= `
+    function resolver(){
+       ${codigoJavascript.value}
+       };`
+    document.body.appendChild(script);
 }
 
-function vaciar(){
-    
-    contenedor.innerHTML = "";
+function vaciarCodigoJavascript(){  
     codigoJavascript.value = "";
-    console.clear();
+}
 
+function vaciarConsola(){  
+    console.clear();
+}
+
+function vaciarScript(){
+    document.getElementById('traduccion').parentNode.removeChild(document.getElementById('traduccion'));
 }
 
 
