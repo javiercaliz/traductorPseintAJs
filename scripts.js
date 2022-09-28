@@ -55,6 +55,8 @@ function traduccionSimple(){
     let string = codigoJavascript.value
     let codigo = string.split("\n");
     for (let i = 0; i < codigo.length; i++) {
+        
+        let auxiliar = codigo[i];
       
         if (/PI/gi.test(codigo[i])) {
         codigo[i] = `${codigo[i].replace('PI' || 'pi', 'Math.PI')}`};
@@ -71,7 +73,10 @@ function traduccionSimple(){
         if (/NO/gi.test(codigo[i])) {
         codigo[i] = `${codigo[i].replace(' No ' || ' no ' || ' NO ', ' !')}`};
      
-       
+
+        if (/subcadena/gi.test(codigo[i])) {
+            //analizando en test.js
+        }
    
 
     }
