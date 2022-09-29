@@ -156,6 +156,13 @@ function segundaTraduccion(){
             codigo[i] = `${codigo[i].replace(/while\s\(\sQue/gi, '} while (')}`;
             codigo[i] = codigo[i].concat(')');
         };
+        if (/(SubProceso)(?=(?:[^"]|"[^"]*")*$)/gi.test(codigo[i])) {
+            codigo[i] = `${codigo[i].replace(/SubProceso/gi, 'function')}`;
+            codigo[i] = codigo[i].concat('{');
+        };
+        if (/(Fin\sfunction{)(?=(?:[^"]|"[^"]*")*$)/gi.test(codigo[i])) {
+            codigo[i] = `${codigo[i].replace(/Fin\sfunction{/gi, '}')}`;
+        };
             
 
     }
