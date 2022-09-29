@@ -42,7 +42,7 @@ function traducirLeer(origen) {
 
   final = origen.slice(5);
 
-  return `${final} = prompt()`;
+  return `${final} = prompt('${final}')`;
 }
 
 function Subcadena(string, start, end) {
