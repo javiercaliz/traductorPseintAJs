@@ -142,6 +142,21 @@ function segundaTraduccion(){
         if (codigo[i] == 'for(Para = undefined; Para<NaN; Para=Para+undefined) {') {
             codigo[i] = '};';
         }
+        if (/(mientras\s)(?=(?:[^"]|"[^"]*")*$)/gi.test(codigo[i])) {
+            codigo[i] = `${codigo[i].replace(/mientras/gi, 'while (')}`;
+            codigo[i] = `${codigo[i].replace(/hacer/gi, ') {')}`;
+        };
+        if (/(Fin\smientras)(?=(?:[^"]|"[^"]*")*$)/gi.test(codigo[i])) {
+            codigo[i] = `${codigo[i].replace(/Fin\smientras/gi, '};')}`;
+        };
+        if (/(Repetir)(?=(?:[^"]|"[^"]*")*$)/gi.test(codigo[i])) {
+            codigo[i] = `${codigo[i].replace(/repetir/gi, 'do {')}`;
+        };
+        if (/(while\s\(\sQue)(?=(?:[^"]|"[^"]*")*$)/gi.test(codigo[i])) {
+            codigo[i] = `${codigo[i].replace(/while\s\(\sQue/gi, '} while (')}`;
+            codigo[i] = codigo[i].concat(')');
+        };
+            
 
     }
 
