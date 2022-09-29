@@ -30,19 +30,26 @@ function traducirVariables(origen) {
 }
 
 function traducirEscribir(origen) {
-  let final;
+  let final = '';
 
-  final = origen.slice(9);
+  final = origen.replace(/escribir/gi, 'console.log(');
+  final = final.concat(');')
 
-  return `console.log(${final});`;
+  return final;
 }
 
 function traducirLeer(origen) {
-  let final;
+  let inicio = ''
+  let final = '';
 
-  final = origen.slice(5);
+  inicio = origen.replace(/leer/gi, '');
+  inicio = inicio.concat(' = ')
 
-  return `${final} = prompt('${final}')`;
+  final = origen.replace(/leer/gi, 'prompt("');
+  final = final.concat('");'); 
+  final= final.trim();
+
+  return inicio+final;
 }
 
 function Subcadena(string, start, end) {

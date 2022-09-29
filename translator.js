@@ -13,8 +13,8 @@ var botonEjercicio3 = document.getElementById('ejercicio3');
 function inicio() {
   vaciarConsola();
   vaciarCodigoJavascript();
-  traduccionCompleja();
-  traduccionSimple();
+  primeraTraduccion();
+  segundaTraduccion();
   scriptToHtml();
   resolver();
   vaciarScript();
@@ -25,7 +25,7 @@ function activarConsigna(opcion) {
     consigna.textContent = ejercicios[opcion].consigna;
 }
 
-function traduccionCompleja(){
+function primeraTraduccion(){
 
     let string = textoPseint.value; 
  
@@ -51,12 +51,12 @@ function traduccionCompleja(){
     }
 }
 
-function traduccionSimple(){
+function segundaTraduccion(){
     let string = codigoJavascript.value
     let codigo = string.split("\n");
     for (let i = 0; i < codigo.length; i++) {
          
-      
+
         if (/(PI)(?=(?:[^"]|"[^"]*")*$)/gi.test(codigo[i])) {
             codigo[i] = `${codigo[i].replace(/pi/gi, 'Math.PI')}`};
         if (/(Euler)(?=(?:[^"]|"[^"]*")*$)/gi.test(codigo[i])) {
@@ -113,6 +113,35 @@ function traduccionSimple(){
             codigo[i] = `${codigo[i].replace(/exp/gi, 'exp')}`};
         if (/(azar)(?=(?:[^"]|"[^"]*")*$)/gi.test(codigo[i])) {
             codigo[i] = `${codigo[i].replace(/azar/gi, 'azar')}`};
+        if (/(si\s)(?=(?:[^"]|"[^"]*")*$)/gi.test(codigo[i])) {
+            codigo[i] = `${codigo[i].replace(/si/gi, 'if (')}`;
+            codigo[i] = `${codigo[i].replace(/entonces/gi, ') {')}`;};
+        if (/(sino)(?=(?:[^"]|"[^"]*")*$)/gi.test(codigo[i])) {
+            codigo[i] = `${codigo[i].replace(/sino/gi, '}else{')}`;};
+        if (/(fin\ssi)(?=(?:[^"]|"[^"]*")*$)/gi.test(codigo[i])) {
+            codigo[i] = `${codigo[i].replace(/fin\ssi/gi, '}')}`;};
+        if (/(segun)(?=(?:[^"]|"[^"]*")*$)/gi.test(codigo[i])) {
+            codigo[i] = `${codigo[i].replace(/segun/gi, 'switch (')}`;
+            codigo[i] = `${codigo[i].replace(/hacer/gi, ') {')}`;};
+        if (/(\d:)(?=(?:[^"]|"[^"]*")*$)/gi.test(codigo[i])) {
+            codigo[i] = codigo[i].trim();
+            codigo[i] =`\t case "${codigo[i].slice(0, -1)}":`;
+            codigo[i+1] =`${codigo[i+1]}\n\t\tbreak;`;};
+        if (/(De\sOtro\s%o)(?=(?:[^"]|"[^"]*")*$)/gi.test(codigo[i])) {
+            codigo[i] = `${codigo[i].replace(/De\sOtro\s%o/gi, 'default')}`;};
+        if (/(Fin\sswitch\s\()(?=(?:[^"]|"[^"]*")*$)/gi.test(codigo[i])) {
+            codigo[i] = `${codigo[i].replace(/Fin\sswitch\s\(/gi, '};')}`;};
+        if (/(para)(?=(?:[^"]|"[^"]*")*$)/gi.test(codigo[i])) {
+            let array = codigo[i].split(' ');
+            let centinela = array[1];
+            let valorInicial = array[3];
+            let limite = parseInt(array[5])+1;
+            let incremento = array[8];
+            codigo[i] = `for(${centinela} = ${valorInicial}; ${centinela}<${limite}; ${centinela}=${centinela}+${incremento}) {`;
+        };
+        if (codigo[i] == 'for(Para = undefined; Para<NaN; Para=Para+undefined) {') {
+            codigo[i] = '};';
+        }
 
     }
 
