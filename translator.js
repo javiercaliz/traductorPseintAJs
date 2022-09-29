@@ -54,6 +54,7 @@ function primeraTraduccion(){
 function segundaTraduccion(){
     let string = codigoJavascript.value
     let codigo = string.split("\n");
+    var retorno = '';
     for (let i = 0; i < codigo.length; i++) {
          
 
@@ -163,7 +164,23 @@ function segundaTraduccion(){
         if (/(Fin\sfunction{)(?=(?:[^"]|"[^"]*")*$)/gi.test(codigo[i])) {
             codigo[i] = `${codigo[i].replace(/Fin\sfunction{/gi, '}')}`;
         };
-            
+        
+        if (/(Funcion)(?=(?:[^"]|"[^"]*")*$)/gi.test(codigo[i]) ) {
+            console.log(codigo[i]);
+            codigo[i] = `${codigo[i].replace(/Funcion/gi, 'function')}`;
+            codigo[i] = codigo[i].concat('{');
+            let array = codigo[i].split(' ');console.log(array);
+            if (array[1]!='function{') {
+                retorno = array[1];
+            }
+            array.splice(1, 2);
+            codigo[i] = array.join(' ');
+        };
+        console.log('retorno'+retorno);
+        if (/(Fin)(?=(?:[^"]|"[^"]*")*$)/gi.test(codigo[i])) {
+            codigo[i] = ` return ${retorno}\n};`;
+        };
+        
 
     }
 
