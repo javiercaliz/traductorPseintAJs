@@ -30,11 +30,9 @@ function traducirVariables(origen) {
 }
 
 function traducirEscribir(origen) {
-  let final = '';
-
-  final = origen.replace(/escribir/gi, 'console.log(');
-  final = final.concat(');')
-
+  let final = "";
+    final = origen.replace(/escribir/gi, "console.log(");
+    final = final.concat(");");
   return final;
 }
 

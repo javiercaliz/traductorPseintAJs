@@ -176,7 +176,7 @@ function segundaTraduccion(){
             array.splice(1, 2);
             codigo[i] = array.join(' ');
         };
-        console.log('retorno'+retorno);
+        
         if (/(Fin)(?=(?:[^"]|"[^"]*")*$)/gi.test(codigo[i])) {
             codigo[i] = ` return ${retorno}\n};`;
         };
