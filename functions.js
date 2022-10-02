@@ -30,24 +30,25 @@ function traducirVariables(origen) {
 }
 
 function traducirEscribir(origen) {
-  //Para escribir en la terminal
-  let terminal = document.getElementById('terminal');
-  let instruccion = "";
-  instruccion = origen.replace(/escribir/gi, "");
-  instruccion = instruccion.replace(/"/gi, "").trim();
-  if (instruccion.toLowerCase().includes('sin saltar')) {
-    instruccion = instruccion.replace(/sin\ssaltar/gi, "").trim();
-    terminal.textContent += instruccion;
-  } else {
-    terminal.textContent += instruccion + '\n';
-  }
-
-  //Para traducir a JavaScript
   let final = "";
-    final = origen.trim().replace(/escribir/gi, "console.log(");
-    final = final.concat(");");
+  if (origen.toLowerCase().includes('sin saltar')) {
+    origen = origen.replace(/sin\ssaltar/gi, "").trim();
+    final = origen.trim().replace(/escribir/gi, "escribirSinSaltar(");
+  } else {
+    final = origen.trim().replace(/escribir/gi, "escribir(");
+  }
+  final = final.concat(");");
   return final;
+}
 
+function escribir(origen) {
+  let terminal = document.getElementById('terminal');
+  terminal.textContent += origen + '\n';
+}
+
+function escribirSinSaltar(origen) {
+  let terminal = document.getElementById("terminal");
+  terminal.textContent += origen;
 }
 
 function traducirLeer(origen) {
