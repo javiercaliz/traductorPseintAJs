@@ -13,6 +13,7 @@ var botonEjercicio3 = document.getElementById('ejercicio3');
 function inicio() {
   vaciarConsola();
   vaciarCodigoJavascript();
+  vaciarTerminal(); 
   primeraTraduccion();
   segundaTraduccion();
   scriptToHtml();
@@ -197,9 +198,9 @@ function segundaTraduccion(){
             codigo[i] = array.join(' ');
         };
         
-        /* if (/(Fin)(?=(?:[^"]|"[^"]*")*$)/gi.test(codigo[i])) {
+        if (/(Fin)(?=(?:[^"]|"[^"]*")*$)/gi.test(codigo[i])) {
             codigo[i] = ` return ${retorno}\n};`;
-        }; */
+        }; 
         
     };
     }
@@ -224,6 +225,11 @@ function vaciarCodigoJavascript(){
 
 function vaciarConsola(){  
     console.clear();
+}
+
+function vaciarTerminal() {
+    let terminal = document.getElementById('terminal');
+    terminal.textContent = '';
 }
 
 function vaciarScript(){
