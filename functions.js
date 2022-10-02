@@ -30,10 +30,18 @@ function traducirVariables(origen) {
 }
 
 function traducirEscribir(origen) {
-  let final = "";
-    final = origen.replace(/escribir/gi, "console.log(");
-    final = final.concat(");");
-  return final;
+  
+  let terminal = document.getElementById('terminal');
+  let instruccion = "";
+  instruccion = origen.replace(/escribir/gi, "");
+  instruccion = instruccion.replace(/"/gi, "").trim();
+  if (instruccion.toLowerCase().includes('sin saltar')) {
+    instruccion = instruccion.replace(/sin\ssaltar/gi, "").trim();
+    terminal.textContent += instruccion;
+  } else {
+    terminal.textContent += instruccion + '\n';
+  }
+
 }
 
 function traducirLeer(origen) {

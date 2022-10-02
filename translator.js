@@ -28,8 +28,15 @@ function activarConsigna(opcion) {
 function primeraTraduccion(){
 
     let string = textoPseint.value; 
- 
+    
+    string = string.replace(/Fin\sPara/gi, '};');
+    string = string.replace(/Fin\sSi/gi, '};');
+    string = string.replace(/Fin\sSegun/gi, '};');
+    string = string.replace(/Fin\sSubproceso/gi, '};');
+
     let codigo = string.split("\n");
+
+
 
     for (let i = 0; i < codigo.length; i++) {
         let sentencia = codigo[i]
@@ -55,8 +62,11 @@ function segundaTraduccion(){
     let string = codigoJavascript.value
     let codigo = string.split("\n");
     var retorno = '';
+
+
     for (let i = 0; i < codigo.length; i++) {
-         
+    if (/(\/\/)(?=(?:[^"]|"[^"]*")*$)/gi.test(codigo[i])==false) {
+            
 
         if (/(PI)(?=(?:[^"]|"[^"]*")*$)/gi.test(codigo[i])) {
             codigo[i] = `${codigo[i].replace(/pi/gi, 'Math.PI')}`};
@@ -145,13 +155,14 @@ function segundaTraduccion(){
             let array = codigo[i].split(' ');
             let centinela = array[1];
             let valorInicial = array[3];
-            let limite = parseInt(array[5])+1;
+            let limite = array[5];
             let incremento = array[8];
-            codigo[i] = `for(${centinela} = ${valorInicial}; ${centinela}<${limite}; ${centinela}=${centinela}+${incremento}) {`;
+            codigo[i] = `for(${centinela} = ${valorInicial}; ${centinela} < ${limite}+1; ${centinela}=${centinela}+${incremento}) {`;
         };
+    
         if (codigo[i] == 'for(Para = undefined; Para<NaN; Para=Para+undefined) {') {
             codigo[i] = '};';
-        }
+        };
         if (/(mientras\s)(?=(?:[^"]|"[^"]*")*$)/gi.test(codigo[i])) {
             codigo[i] = `${codigo[i].replace(/mientras/gi, 'while (')}`;
             codigo[i] = `${codigo[i].replace(/hacer/gi, ') {')}`;
@@ -189,7 +200,7 @@ function segundaTraduccion(){
             codigo[i] = ` return ${retorno}\n};`;
         };
         
-
+    };
     }
 
     codigoJavascript.value = codigo.join('\n')
