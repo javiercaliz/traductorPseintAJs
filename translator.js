@@ -67,6 +67,7 @@ function segundaTraduccion(){
     for (let i = 0; i < codigo.length; i++) {
     if (/(\/\/)(?=(?:[^"]|"[^"]*")*$)/gi.test(codigo[i])==false) {
             
+        codigo[i] = codigo[i].trim();
 
         if (/(PI)(?=(?:[^"]|"[^"]*")*$)/gi.test(codigo[i])) {
             codigo[i] = `${codigo[i].replace(/pi/gi, 'Math.PI')}`};
@@ -196,9 +197,9 @@ function segundaTraduccion(){
             codigo[i] = array.join(' ');
         };
         
-        if (/(Fin)(?=(?:[^"]|"[^"]*")*$)/gi.test(codigo[i])) {
+        /* if (/(Fin)(?=(?:[^"]|"[^"]*")*$)/gi.test(codigo[i])) {
             codigo[i] = ` return ${retorno}\n};`;
-        };
+        }; */
         
     };
     }

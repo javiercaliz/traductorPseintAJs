@@ -30,7 +30,7 @@ function traducirVariables(origen) {
 }
 
 function traducirEscribir(origen) {
-  
+  //Para escribir en la terminal
   let terminal = document.getElementById('terminal');
   let instruccion = "";
   instruccion = origen.replace(/escribir/gi, "");
@@ -41,6 +41,12 @@ function traducirEscribir(origen) {
   } else {
     terminal.textContent += instruccion + '\n';
   }
+
+  //Para traducir a JavaScript
+  let final = "";
+    final = origen.trim().replace(/escribir/gi, "console.log(");
+    final = final.concat(");");
+  return final;
 
 }
 
