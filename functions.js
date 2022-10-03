@@ -31,6 +31,8 @@ function traducirVariables(origen) {
 
 function traducirEscribir(origen) {
   let final = "";
+  if (/,(?=(?:[^"]|"[^"]*")*$)/gi.test(origen)) {
+    origen = `${origen.replace(/,/gi, '+')}`};
   if (origen.toLowerCase().includes('sin saltar')) {
     origen = origen.replace(/sin\ssaltar/gi, "").trim();
     final = origen.trim().replace(/escribir/gi, "escribirSinSaltar(");

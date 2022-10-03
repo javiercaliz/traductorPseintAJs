@@ -30,10 +30,10 @@ function primeraTraduccion(){
 
     let string = textoPseint.value; 
     
-    string = string.replace(/Fin\sPara/gi, '};');
-    string = string.replace(/Fin\sSi/gi, '};');
-    string = string.replace(/Fin\sSegun/gi, '};');
-    string = string.replace(/Fin\sSubproceso/gi, '};');
+    string = string.replace(/Fin\s?Para/gi, '};');
+    string = string.replace(/Fin\s?Si/gi, '};');
+    string = string.replace(/Fin\s?Segun/gi, '};');
+    string = string.replace(/Fin\s?Subproceso/gi, '};');
 
     let codigo = string.split("\n");
 
@@ -130,10 +130,11 @@ function segundaTraduccion(){
             codigo[i] = `${codigo[i].replace(/<>/gi, '!=')}`};
         if (/(si\s)(?=(?:[^"]|"[^"]*")*$)/gi.test(codigo[i])) {
             codigo[i] = `${codigo[i].replace(/si/gi, 'if (')}`;
-            codigo[i] = `${codigo[i].replace(/entonces/gi, '')}`;
             codigo[i] = codigo[i].concat(') {')};
         if (/(sino)(?=(?:[^"]|"[^"]*")*$)/gi.test(codigo[i])) {
             codigo[i] = `${codigo[i].replace(/sino/gi, '}else{')}`;};
+        if (/(entonces)(?=(?:[^"]|"[^"]*")*$)/gi.test(codigo[i])) {
+            codigo[i] = `${codigo[i].replace(/entonces/gi, '')}`};
         if (/(if\s\(No\))(?=(?:[^"]|"[^"]*")*$)/gi.test(codigo[i])) {
             codigo[i] = `${codigo[i].replace(/if\s\(No\)/gi, '}else')}`;};
         if (/(fin\ssi)(?=(?:[^"]|"[^"]*")*$)/gi.test(codigo[i])) {
@@ -198,9 +199,9 @@ function segundaTraduccion(){
             codigo[i] = array.join(' ');
         };
         
-        if (/(Fin)(?=(?:[^"]|"[^"]*")*$)/gi.test(codigo[i])) {
+       /*  if (/(Fin)(?=(?:[^"]|"[^"]*")*$)/gi.test(codigo[i])) {
             codigo[i] = ` return ${retorno}\n};`;
-        }; 
+        }; */ 
         
     };
     }
