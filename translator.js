@@ -209,36 +209,6 @@ function segundaTraduccion(){
 }
 
 
-function scriptToHtml(){
-    let script = document.createElement('script');
-    script.setAttribute('id', 'traduccion')
-    script.innerHTML= `
-    function resolver(){
-       ${codigoJavascript.value}
-       };`
-    document.body.appendChild(script);
-}
-
-function vaciarCodigoJavascript(){  
-    codigoJavascript.value = "";
-}
-
-function vaciarConsola(){  
-    console.clear();
-}
-
-function vaciarTerminal() {
-    let terminal = document.getElementById('terminal');
-    terminal.textContent = '';
-}
-
-function vaciarScript(){
-    document.getElementById('traduccion').parentNode.removeChild(document.getElementById('traduccion'));
-}
-
-
-
-
 //LISTENERS
 boton.addEventListener('click', ()=>{inicio()})
 botonEjercicio1.addEventListener('click', ()=>{activarConsigna(1)});

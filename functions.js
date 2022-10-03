@@ -52,17 +52,17 @@ function escribirSinSaltar(origen) {
 }
 
 function traducirLeer(origen) {
-  let inicio = ''
+  let inicio = '';
   let final = '';
 
   inicio = origen.replace(/leer/gi, '');
   inicio = inicio.concat(' = ')
 
-  final = origen.replace(/leer/gi, 'prompt("');
+  final = origen.replace(/leer/gi, 'leer("');
   final = final.concat('");'); 
   final= final.trim();
 
-  return inicio+final;
+  return inicio+final; 
 }
 
 function Subcadena(string, start, end) {
@@ -145,4 +145,44 @@ function exp(number){
 
 function azar(number){
   return Math.floor(Math.random() * (number))
+}
+
+function leer(origen) {
+  let nombre = origen;
+  let final = prompt(`Ingrese ${nombre}`);
+  if (!Number.isNaN(parseFloat(final))) {
+    return final = parseFloat(final);
+  }else if(/true/gi.test(final) || /verdadero/gi.test(final)){
+    final = 'VERDADERO';
+  }else if(/false/gi.test(final) || /falso/gi.test(final)){
+    final = 'FALSO';
+  };
+  return final;
+}
+
+function scriptToHtml(){
+  let script = document.createElement('script');
+  script.setAttribute('id', 'traduccion')
+  script.innerHTML= `
+  function resolver(){
+     ${codigoJavascript.value}
+     };`
+  document.body.appendChild(script);
+}
+
+function vaciarCodigoJavascript(){  
+  codigoJavascript.value = "";
+}
+
+function vaciarConsola(){  
+  console.clear();
+}
+
+function vaciarTerminal() {
+  let terminal = document.getElementById('terminal');
+  terminal.textContent = '';
+}
+
+function vaciarScript(){
+  document.getElementById('traduccion').parentNode.removeChild(document.getElementById('traduccion'));
 }
