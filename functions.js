@@ -33,7 +33,6 @@ function traducirEscribir(...origen) {
   let final = "";
   origen.forEach(x => {
     final += x;
-    console.log(final);
   });
   
   if (final.toLowerCase().includes('sin saltar')) {
@@ -50,17 +49,15 @@ function escribir(...origen) {
   let final = "";
   origen.forEach(x => {
     final += x;
-    console.log(final);
   });
   let terminal = document.getElementById('terminal');
-  terminal.textContent += origen + '\n';
+  terminal.textContent += final + '\n';
 }
 
 function escribirSinSaltar(...origen) {
   let final = "";
   origen.forEach(x => {
     final += x;
-    console.log(final);
   });
   let terminal = document.getElementById("terminal");
   terminal.textContent += final;
@@ -177,6 +174,10 @@ function azar(number){
   return Math.floor(Math.random() * (number))
 }
 
+function Aleatorio(num1, num2){
+  return Math.floor(Math.random() * num2)+num1;  
+}
+
 function leer(origen) {
   let nombre = origen;
   let final = prompt(`Ingrese ${nombre}`);
@@ -216,3 +217,23 @@ function vaciarTerminal() {
 function vaciarScript(){
   document.getElementById('traduccion').parentNode.removeChild(document.getElementById('traduccion'));
 }
+
+function traducirPara(origen){
+
+  let sentencia = origen.trim();
+  
+  let centinela = sentencia.slice(sentencia.search(/para/gi)+4, sentencia.search('=')).trim();
+  let valorInicial = sentencia.slice(sentencia.search('=')+1, sentencia.search(/hasta/gi)).trim();
+  let valorFinal = sentencia.slice(sentencia.search(/hasta/gi)+5, sentencia.search(/con/gi)).trim(); 
+  let incremento = sentencia.slice(sentencia.search(/paso/gi)+4, sentencia.search(/hacer/gi)).trim(); 
+  let comparacion = '<';
+  
+  if (valorInicial > valorFinal) {
+      comparacion = '>';
+  }
+
+  return `for(${centinela}=${valorInicial}; ${centinela}${comparacion}${valorFinal}; ${centinela} += ${incremento}) {`;
+  
+  }
+  
+  

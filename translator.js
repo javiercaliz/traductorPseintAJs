@@ -34,6 +34,7 @@ function primeraTraduccion(){
     string = string.replace(/Fin\s?Si/gi, '};');
     string = string.replace(/Fin\s?Segun/gi, '};');
     string = string.replace(/Fin\s?Subproceso/gi, '};');
+    string = string.replace(/<-/gi, '=');
 
     let codigo = string.split("\n");
 
@@ -132,9 +133,9 @@ function segundaTraduccion(){
         if (/(<>)(?=(?:[^"]|"[^"]*")*$)/gi.test(codigo[i])) {
             codigo[i] = `${codigo[i].replace(/<>/gi, '!=')}`};
         if (/(si\s)(?=(?:[^"]|"[^"]*")*$)/gi.test(codigo[i])) {
-            codigo[i] = `${codigo[i].replace(/=/gi, '==')}`;
             codigo[i] = `${codigo[i].replace(/si/gi, 'if (')}`;
             codigo[i] = codigo[i].concat(') {')};
+            codigo[i] = `${codigo[i].replace(/=^=/gi, '==')}`;
         if (/(sino)(?=(?:[^"]|"[^"]*")*$)/gi.test(codigo[i])) {
             codigo[i] = `${codigo[i].replace(/sino/gi, '}else{')}`;};
         if (/(entonces)(?=(?:[^"]|"[^"]*")*$)/gi.test(codigo[i])) {
@@ -158,21 +159,14 @@ function segundaTraduccion(){
             codigo[i] = `${codigo[i].replace(/De\sOtro\s%o/gi, 'default')}`;};
         if (/(Fin\sswitch\s\()(?=(?:[^"]|"[^"]*")*$)/gi.test(codigo[i])) {
             codigo[i] = `${codigo[i].replace(/Fin\sswitch\s\(/gi, '};')}`;};
-        if (/(para)(?=(?:[^"]|"[^"]*")*$)/gi.test(codigo[i])) {
-            let array = codigo[i].split(' ');
-            let centinela = array[1];
-            let valorInicial = array[3];
-            let limite = array[5];
-            let incremento = array[8];
-            codigo[i] = `for(${centinela} = ${valorInicial}; ${centinela} < ${limite}+1; ${centinela}=${centinela}+${incremento}) {`;
-        };
+        if (/(para\s)(?=(?:[^"]|"[^"]*")*$)/gi.test(codigo[i])) {
+            codigo[i] = traducirPara(codigo[i]);
+        }; 
     
-        if (codigo[i] == 'for(Para = undefined; Para<NaN; Para=Para+undefined) {') {
-            codigo[i] = '};';
-        };
+      
         if (/(mientras\s)(?=(?:[^"]|"[^"]*")*$)/gi.test(codigo[i])) {
             codigo[i] = `${codigo[i].replace(/mientras/gi, 'while (')}`;
-            codigo[i] = `${codigo[i].replace(/=/gi, '==')}`;
+            codigo[i] = `${codigo[i].replace(/=^=/gi, '==')}`;
             codigo[i] = `${codigo[i].replace(/hacer/gi, ') {')}`;
         };
         if (/(Fin\smientras)(?=(?:[^"]|"[^"]*")*$)/gi.test(codigo[i])) {
@@ -183,7 +177,7 @@ function segundaTraduccion(){
         };
         if (/(while\s\(\sQue)(?=(?:[^"]|"[^"]*")*$)/gi.test(codigo[i])) {
             codigo[i] = `${codigo[i].replace(/while\s\(\sQue/gi, '} while (')}`;
-            codigo[i] = `${codigo[i].replace(/=/gi, '==')}`;
+            codigo[i] = `${codigo[i].replace(/=^=/gi, '==')}`;
             codigo[i] = codigo[i].concat(')');
         };
         if (/(SubProceso)(?=(?:[^"]|"[^"]*")*$)/gi.test(codigo[i])) {
@@ -205,7 +199,7 @@ function segundaTraduccion(){
             codigo[i] = array.join(' ');
         };
         
-       if (/(Fin)(?=(?:[^"]|"[^"]*")*$)/gi.test(codigo[i])) {
+       if (/('Fin')(?=(?:[^"]|"[^"]*")*$)/gi.test(codigo[i])) {
             codigo[i] = ` return ${retorno}\n};`;
         }; 
        if (/(Por\sReferencia)(?=(?:[^"]|"[^"]*")*$)/gi.test(codigo[i])) {
