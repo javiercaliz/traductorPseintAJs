@@ -83,7 +83,7 @@ function segundaTraduccion(){
         if (/(Falso)(?=(?:[^"]|"[^"]*")*$)/gi.test(codigo[i])) {
             codigo[i] = `${codigo[i].replace(/Falso/gi, 'false')}`};
         if (/(Y)(?=(?:[^"]|"[^"]*")*$)/gi.test(codigo[i])) {
-            codigo[i] = `${codigo[i].replace(/\sY\s/, ' && ')}`};
+            codigo[i] = `${codigo[i].replace(/\sY\s/gi, ' && ')}`};
         if (/(O)(?=(?:[^"]|"[^"]*")*$)/gi.test(codigo[i])) {
             codigo[i] = `${codigo[i].replace(/\sO\s/gi, ' || ')}`};
         if (/(NO)(?=(?:[^"]|"[^"]*")*$)/gi.test(codigo[i])) {
@@ -162,8 +162,6 @@ function segundaTraduccion(){
         if (/(para\s)(?=(?:[^"]|"[^"]*")*$)/gi.test(codigo[i])) {
             codigo[i] = traducirPara(codigo[i]);
         }; 
-    
-      
         if (/(mientras\s)(?=(?:[^"]|"[^"]*")*$)/gi.test(codigo[i])) {
             codigo[i] = `${codigo[i].replace(/mientras/gi, 'while (')}`;
             codigo[i] = `${codigo[i].replace(/=^=/gi, '==')}`;
@@ -199,7 +197,7 @@ function segundaTraduccion(){
             codigo[i] = array.join(' ');
         };
         
-       if (/('Fin')(?=(?:[^"]|"[^"]*")*$)/gi.test(codigo[i])) {
+       if (/Fin(?=(?:[^"]|"[^"]*")*$)/gi.test(codigo[i])) {
             codigo[i] = ` return ${retorno}\n};`;
         }; 
        if (/(Por\sReferencia)(?=(?:[^"]|"[^"]*")*$)/gi.test(codigo[i])) {
