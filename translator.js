@@ -147,7 +147,7 @@ function segundaTraduccion(){
         if (/(segun)(?=(?:[^"]|"[^"]*")*$)/gi.test(codigo[i])) {
             codigo[i] = `${codigo[i].replace(/segun/gi, 'switch (')}`;
             codigo[i] = `${codigo[i].replace(/hacer/gi, ') {')}`;};
-        if (/(\d:)(?=(?:[^"]|"[^"]*")*$)/gi.test(codigo[i])) {
+        if (/(\".\s?\":)(?=(?:[^"]|"[^"]*")*$)/gi.test(codigo[i])) {
             codigo[i] = codigo[i].trim();
             codigo[i] =`\t case ${codigo[i].slice(0, -1)}:`;
             codigo[i+1] =`${codigo[i+1]}\n\t\tbreak;`;};
@@ -204,6 +204,12 @@ function segundaTraduccion(){
         
        if (/(Fin)(?=(?:[^"]|"[^"]*")*$)/gi.test(codigo[i])) {
             codigo[i] = ` return ${retorno}\n};`;
+        }; 
+       if (/(Por\sReferencia)(?=(?:[^"]|"[^"]*")*$)/gi.test(codigo[i])) {
+            codigo[i] = `${codigo[i].replace(/Por\sReferencia/gi, '')}`;
+        }; 
+       if (/(Por\sValor)(?=(?:[^"]|"[^"]*")*$)/gi.test(codigo[i])) {
+            codigo[i] = `${codigo[i].replace(/Por\sValor/gi, '')}`;
         }; 
         
     };
