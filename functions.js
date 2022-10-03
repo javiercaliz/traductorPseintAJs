@@ -29,28 +29,41 @@ function traducirVariables(origen) {
   return final;
 }
 
-function traducirEscribir(origen) {
+function traducirEscribir(...origen) {
   let final = "";
-  if (/,(?=(?:[^"]|"[^"]*")*$)/gi.test(origen)) {
-    origen = `${origen.replace(/,/gi, '+')}`};
-  if (origen.toLowerCase().includes('sin saltar')) {
-    origen = origen.replace(/sin\ssaltar/gi, "").trim();
-    final = origen.trim().replace(/escribir/gi, "escribirSinSaltar(");
+  origen.forEach(x => {
+    final += x;
+    console.log(final);
+  });
+  
+  if (final.toLowerCase().includes('sin saltar')) {
+    final = final.replace(/sin\ssaltar/gi, "").trim();
+    final = final.trim().replace(/escribir/gi, "escribirSinSaltar(");
   } else {
-    final = origen.trim().replace(/escribir/gi, "escribir(");
+    final = final.trim().replace(/escribir/gi, "escribir(");
   }
   final = final.concat(");");
   return final;
 }
 
-function escribir(origen) {
+function escribir(...origen) {
+  let final = "";
+  origen.forEach(x => {
+    final += x;
+    console.log(final);
+  });
   let terminal = document.getElementById('terminal');
   terminal.textContent += origen + '\n';
 }
 
-function escribirSinSaltar(origen) {
+function escribirSinSaltar(...origen) {
+  let final = "";
+  origen.forEach(x => {
+    final += x;
+    console.log(final);
+  });
   let terminal = document.getElementById("terminal");
-  terminal.textContent += origen;
+  terminal.textContent += final;
 }
 
 function traducirLeer(origen) {
@@ -65,6 +78,21 @@ function traducirLeer(origen) {
   final= final.trim();
 
   return inicio+final; 
+}
+
+function traducirArreglo(origen) {
+  let inicio = '';
+  let final = '';
+  
+  inicio = origen.replace(/dimension/gi, '');
+  let variable = inicio.replace(/\[.*/g, "");
+  let size = inicio.replace(variable, '')
+  size = size.replace(/\[/g, "");
+  size = size.replace(/\]/g, "");
+
+  final = `${variable} = [] \n ${variable}.length = ${size}`;
+
+  return final
 }
 
 function Subcadena(string, start, end) {

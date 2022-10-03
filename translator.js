@@ -45,16 +45,19 @@ function primeraTraduccion(){
         if (/Algoritmo/g.test(sentencia)) {
             continue;
         }else
+        if (/Dimension/g.test(sentencia)) {
+            codigoJavascript.value += `${traducirArreglo(sentencia)}\n`;
+        }else
         if (/Definir/gi.test(sentencia)) {
-            codigoJavascript.value += `${traducirVariables(codigo[i])}\n`;
+            codigoJavascript.value += `${traducirVariables(sentencia)}\n`;
         }else 
         if (/Escribir/gi.test(sentencia)) {
-            codigoJavascript.value += `${traducirEscribir(codigo[i])}\n`;
+            codigoJavascript.value += `${traducirEscribir(sentencia)}\n`;
         }else
         if(/Leer/gi.test(sentencia)){
-            codigoJavascript.value += `${traducirLeer(codigo[i])}\n`;
+            codigoJavascript.value += `${traducirLeer(sentencia)}\n`;
         }else{
-            codigoJavascript.value += `${codigo[i]}\n`;
+            codigoJavascript.value += `${sentencia}\n`;
         }
     }
 }
@@ -129,8 +132,8 @@ function segundaTraduccion(){
         if (/(<>)(?=(?:[^"]|"[^"]*")*$)/gi.test(codigo[i])) {
             codigo[i] = `${codigo[i].replace(/<>/gi, '!=')}`};
         if (/(si\s)(?=(?:[^"]|"[^"]*")*$)/gi.test(codigo[i])) {
+            codigo[i] = `${codigo[i].replace(/=/gi, '==')}`;
             codigo[i] = `${codigo[i].replace(/si/gi, 'if (')}`;
-            codigo[i] = `${codigo[i].replace(/\s=\s/gi, '==')}`;
             codigo[i] = codigo[i].concat(') {')};
         if (/(sino)(?=(?:[^"]|"[^"]*")*$)/gi.test(codigo[i])) {
             codigo[i] = `${codigo[i].replace(/sino/gi, '}else{')}`;};
@@ -169,7 +172,7 @@ function segundaTraduccion(){
         };
         if (/(mientras\s)(?=(?:[^"]|"[^"]*")*$)/gi.test(codigo[i])) {
             codigo[i] = `${codigo[i].replace(/mientras/gi, 'while (')}`;
-            codigo[i] = `${codigo[i].replace(/\s=\s/gi, '==')}`;
+            codigo[i] = `${codigo[i].replace(/=/gi, '==')}`;
             codigo[i] = `${codigo[i].replace(/hacer/gi, ') {')}`;
         };
         if (/(Fin\smientras)(?=(?:[^"]|"[^"]*")*$)/gi.test(codigo[i])) {
@@ -180,7 +183,7 @@ function segundaTraduccion(){
         };
         if (/(while\s\(\sQue)(?=(?:[^"]|"[^"]*")*$)/gi.test(codigo[i])) {
             codigo[i] = `${codigo[i].replace(/while\s\(\sQue/gi, '} while (')}`;
-            codigo[i] = `${codigo[i].replace(/\s=\s/gi, '==')}`;
+            codigo[i] = `${codigo[i].replace(/=/gi, '==')}`;
             codigo[i] = codigo[i].concat(')');
         };
         if (/(SubProceso)(?=(?:[^"]|"[^"]*")*$)/gi.test(codigo[i])) {
