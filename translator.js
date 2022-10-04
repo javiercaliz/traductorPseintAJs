@@ -231,10 +231,16 @@ area = PI * radio^2
 perimetro = 2 * PI *radio`,
 'salidaEsperada':
 `area = 1963.4954084936207 cm
-perímetro = 157.07963267948966 cm`},
-2:{'consigna':`Escribir un programa que calcule el precio promedio de un producto. El precio promedio se debe calcular a partir del precio del mismo producto en tres establecimientos distintos.`},
-3:{'consigna':`A partir de una conocida cantidad de metros que el usuario ingresa a través del teclado se debe obtener su equivalente en centímetros, en milímetros y en pulgadas. 
-Ayuda: 1 pulgada equivale a 2.54 centímetros.`}
+perímetro = 157.07963267948966 cm\n`},
+2:{'consigna':`Escribir un programa que calcule el precio promedio de un producto. El precio promedio se debe calcular a partir del precio del mismo producto en tres establecimientos distintos. Establecimiento 1: 100, Establecimiento 2: 200, Establecimiento 3: 180`,
+'salidaEsperada': 'El precio promedio es $160\n'},
+3:{'consigna':`A partir de una conocida cantidad de 23 metros se debe obtener su equivalente en centímetros, en milímetros y en pulgadas. 
+Ayuda: 1 pulgada equivale a 2.54 centímetros.`,
+'salidaEsperada': 
+`metros = 23
+centímetros = 2300
+milímetros = 23000
+pulgadas = 905.511811023622\n`}
 }
 
 
