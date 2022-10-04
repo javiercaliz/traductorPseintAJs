@@ -26,39 +26,36 @@
 
     <br><br>
 
-    <table class="d-table col-12 text-bold">
-        <thead>
-            <tr>
-                <th id="tituloPI">PseInt</th>
-                <th id="tituloTerminal">Terminal</th>
-                <th id="tituloJS">JavaScript</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-
-                <td >
-                    <textarea aria-label="textoPseint" name="textoPseint" id="textoPseint" style="width: 100%;"
-                        rows="20" placeholder="Pega tu código aquí"></textarea>
-                </td>
-
-                <td >
-                    <textarea aria-label="terminal" name="terminal" id="terminal" style="width: 100%;" rows="20"
+    <div class="d.flex text-bold" id="main">
+        <div>
+            <h3 id="tituloPI">PseInt</h3>
+            <textarea aria-label="textoPseint" name="textoPseint" id="textoPseint"
+                        rows="15" placeholder="Pega tu código aquí"></textarea>
+        </div>
+        <div>
+            <h3 id="tituloTerminal">Terminal</h3>
+            <textarea aria-label="terminal" name="terminal" id="terminal" rows="15"
                         readonly=""></textarea>
-                </td>
-                <td >
-                    <textarea aria-label="codigoJavascript" name="codigoJavascript" id="codigoJavascript"
-                        style="width: 100%;" rows="20"></textarea>
-                </td>
-                <td >
-                    Acá irían los test
+        </div>
+        <div>
+            <h3 id="tituloJS">JavaScript</h3>
+            <textarea aria-label="codigoJavascript" name="codigoJavascript" id="codigoJavascript"
+                        rows="15"></textarea>
+        </div>
+        <div id="resultados">
+            <h3 id="tituloResultados">Salida Esperada</h3>
+            <div>
+                <textarea aria-label="salidaEsperada" name="salidaEsperada" id="salidaEsperada" rows="7"
+                         readonly=""></textarea>
+            </div>
+            <div>
+                <textarea aria-label="tests" name="tests" id="tests" rows="6"
+                         readonly="">✅ Tests</textarea>
+            </div>
+        </div>
+    </div>
 
-                </td>
-            </tr>
-        </tbody>
-    </table>
-
-
+   
     <script src="translator.js"></script>
     <script src="functions.js"></script>
     <script src="test.js"></script>

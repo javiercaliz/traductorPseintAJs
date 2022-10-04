@@ -7,3 +7,25 @@
     margin-bottom: 20px;
 }
 
+#main {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+#resultados {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+textarea {
+    overflow: auto;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 10px;
+    width: 25rem;
+}
+
