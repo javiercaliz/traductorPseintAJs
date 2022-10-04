@@ -1,45 +1,59 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-color-mode="auto" data-light-theme="light" data-dark-theme="dark_dimmed">
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="https://unpkg.com/papercss@1.8.3/dist/paper.css">
+    <link href="https://unpkg.com/@primer/css@^20.2.4/dist/primer.css" rel="stylesheet" /> <!-- primer css -->
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body style="text-align: center;">
 
-    <h1>Guía 1</h1>
+    <h1 class="h1">Guía 1</h1>
 
     <div id="ejercicios">
-        <button type="button" id="ejercicio1">1</button>
-        <button type="button" id="ejercicio2">2</button>
-        <button type="button" id="ejercicio3">3</button>
+        <button class="btn" type="button" id="ejercicio1">1</button>
+        <button class="btn" type="button" id="ejercicio2">2</button>
+        <button class="btn" type="button" id="ejercicio3">3</button>
     </div>
 
     <p id="consigna"></p>
     <br>
-    <button type="submit" id="botonResolver">Resolver</button>
+    <button class="btn btn-primary" type="submit" id="botonResolver">Resolver</button>
 
     <br><br>
 
-    <table>
+    <table class="d-table col-12 text-bold">
         <thead>
             <tr>
-                <th>PseInt</th>
-                <th>JavaScript</th>
-                <th>Terminal</th>
+                <th id="tituloPI">PseInt</th>
+                <th id="tituloTerminal">Terminal</th>
+                <th id="tituloJS">JavaScript</th>
             </tr>
         </thead>
         <tbody>
-            <tr >
-                <td><textarea aria-label="textoPseint" name="textoPseint" id="textoPseint" style="width: 100%;" rows="20"
-                        placeholder="Pega tu código aquí"></textarea></td>
-                <td><textarea aria-label="codigoJavascript" name="codigoJavascript" id="codigoJavascript" style="width: 100%;"
-                        rows="20"></textarea></td>
-                <td><textarea aria-label="terminal" name="terminal" id="terminal" style="width: 100%;" rows="20" readonly=""></textarea></td>
+            <tr>
+
+                <td >
+                    <textarea aria-label="textoPseint" name="textoPseint" id="textoPseint" style="width: 100%;"
+                        rows="20" placeholder="Pega tu código aquí"></textarea>
+                </td>
+
+                <td >
+                    <textarea aria-label="terminal" name="terminal" id="terminal" style="width: 100%;" rows="20"
+                        readonly=""></textarea>
+                </td>
+                <td >
+                    <textarea aria-label="codigoJavascript" name="codigoJavascript" id="codigoJavascript"
+                        style="width: 100%;" rows="20"></textarea>
+                </td>
+                <td >
+                    Acá irían los test
+
+                </td>
             </tr>
         </tbody>
     </table>
