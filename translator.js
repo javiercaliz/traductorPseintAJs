@@ -4,6 +4,7 @@ var boton = document.getElementById('botonResolver');
 var textoPseint = document.getElementById('textoPseint');
 var codigoJavascript = document.getElementById('codigoJavascript');
 var consigna = document.getElementById('consigna');
+var salidaEsperada = document.getElementById('salidaEsperada');
 var botonEjercicio1 = document.getElementById('ejercicio1');
 var botonEjercicio2 = document.getElementById('ejercicio2');
 var botonEjercicio3 = document.getElementById('ejercicio3');
@@ -19,11 +20,12 @@ function inicio() {
   scriptToHtml();
   resolver();
   vaciarScript();
-    
+  test();  
 }
 
 function activarConsigna(opcion) {
     consigna.textContent = ejercicios[opcion].consigna;
+    salidaEsperada.textContent = ejercicios[opcion].salidaEsperada;
 }
 
 function primeraTraduccion(){
@@ -224,9 +226,12 @@ botonEjercicio3.addEventListener('click', ()=>{activarConsigna(3)});
 //OBJECTS
 
 const ejercicios = {
-1:{'consigna':`Conocido el número en matemática PI π, pedir al usuario que ingrese el valor del radio de una circunferencia y calcular y mostrar por pantalla el área y perímetro. Recuerde que para calcular el área y el perímetro se utilizan las siguientes fórmulas:
+1:{'consigna':`Conocido el número en matemática PI π y tomado como radio de circunferencia 25cm: calcular y mostrar por pantalla el área y perímetro. Recuerde que para calcular el área y el perímetro se utilizan las siguientes fórmulas:
 area = PI * radio^2
-perimetro = 2 * PI *radio`},
+perimetro = 2 * PI *radio`,
+'salidaEsperada':
+`area = 1963.4954084936207 cm
+perímetro = 157.07963267948966 cm`},
 2:{'consigna':`Escribir un programa que calcule el precio promedio de un producto. El precio promedio se debe calcular a partir del precio del mismo producto en tres establecimientos distintos.`},
 3:{'consigna':`A partir de una conocida cantidad de metros que el usuario ingresa a través del teclado se debe obtener su equivalente en centímetros, en milímetros y en pulgadas. 
 Ayuda: 1 pulgada equivale a 2.54 centímetros.`}
