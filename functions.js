@@ -241,9 +241,6 @@ function traducirPara(origen){
     let terminal = document.getElementById('terminal').value;
     let tests = document.getElementById('tests');
 
-    console.log(terminal.split());
-    console.log(salida.split());
-
     if (salida === terminal) {
       tests.textContent = '✔ Test Correcto';
     } else {
