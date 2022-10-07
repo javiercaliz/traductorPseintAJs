@@ -238,14 +238,16 @@ function traducirPara(origen){
   }
 
   function test() {
-    let salida = document.getElementById('salidaEsperada').value;
-    let terminal = document.getElementById('terminal').value;
-    let tests = document.getElementById('tests');
+    let salida = document.getElementById("salidaEsperada").value; 
+    let terminal = document.getElementById("terminal").value;
+    let tests = document.getElementById("tests");
 
-    if (salida === terminal) {
-      tests.textContent = '✔ Test Correcto';
-    } else {
-      tests.textContent = '❌ Test Incorrecto';      
+    if (salida != '') {
+      if (salida === terminal) {
+        tests.textContent = "✔ Test Correcto";
+      } else {
+        tests.textContent = "❌ Test Incorrecto";
+      }
     }
   }
   
