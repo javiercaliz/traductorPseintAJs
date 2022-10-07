@@ -78,19 +78,15 @@ function traducirLeer(origen) {
 }
 
 function traducirArreglo(origen) {
-  let inicio = '';
-  let final = '';
-  
   inicio = origen.replace(/dimension/gi, '');
   let variable = inicio.replace(/\[.*/g, "");
   let size = inicio.replace(variable, '').replace('[', '').replace(']', '').split(','); 
 
-  final = `${variable} = [] \n ${variable}.length = ${size[0]}\n
-  for(i = 0; i < ${size[0]}; i++){ 
-    ${variable}//COMPLETAR
-  }`  ;
-
-  return final
+  if (size.length==1) {
+    return `${variable} = new Array(${size[0]});`
+  } else {
+    return `${variable} = new Array(${size[0]}); for (var aux_index_0=0;aux_index_0<${size[1]};aux_index_0++) { x[aux_index_0] = new Array(${size[1]}); }`
+  }
 }
 
 function Subcadena(string, start, end) {
