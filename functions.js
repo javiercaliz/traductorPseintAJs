@@ -83,11 +83,12 @@ function traducirArreglo(origen) {
   
   inicio = origen.replace(/dimension/gi, '');
   let variable = inicio.replace(/\[.*/g, "");
-  let size = inicio.replace(variable, '')
-  size = size.replace(/\[/g, "");
-  size = size.replace(/\]/g, "");
+  let size = inicio.replace(variable, '').replace('[', '').replace(']', '').split(','); 
 
-  final = `${variable} = [] \n ${variable}.length = ${size}`;
+  final = `${variable} = [] \n ${variable}.length = ${size[0]}\n
+  for(i = 0; i < ${size[0]}; i++){ 
+    ${variable}//COMPLETAR
+  }`  ;
 
   return final
 }
@@ -232,7 +233,7 @@ function traducirPara(origen){
       comparacion = '>';
   }
 
-  return `for(${centinela}=${valorInicial}; ${centinela}${comparacion}${valorFinal}; ${centinela} += ${incremento}) {`;
+  return `for(${centinela}=${valorInicial}; ${centinela}${comparacion}${valorFinal}+1; ${centinela} += ${incremento}) {`;
   
   }
 
